@@ -17,13 +17,6 @@ A comprehensive AWS resource discovery and cost analysis tool that scans for EC2
 - Python 3.7+
 - AWS credentials with appropriate permissions
 
-## Installation
-
-1. Clone the repository
-2. Install dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
 
 ## Configuration
 
@@ -31,19 +24,6 @@ The script uses AWS credentials configured in the following ways:
 1. Environment variables (as configured in the script)
 2. AWS credentials file (`~/.aws/credentials`)
 3. IAM roles (when running on EC2)
-
-## Usage
-
-```bash
-# Run a full scan with default settings
-python cloud_archaeologist.py
-
-# Use a specific AWS profile
-python cloud_archaeologist.py --profile myprofile
-
-# Specify output format
-python cloud_archaeologist.py --output json
-```
 
 ## Output
 
@@ -67,7 +47,7 @@ The tool requires the following AWS permissions:
 
 ## Security Note
 
-⚠️ **Important**: The demo script includes AWS credentials. In production, use IAM roles or AWS credentials file instead of hardcoding keys.
+ **Important**: The demo script includes AWS credentials. In production, use IAM roles or AWS credentials file instead of hardcoding keys.
 
 ## Cost Calculation Method
 
@@ -77,7 +57,3 @@ The tool uses approximate pricing based on AWS on-demand rates. For more accurat
 - Spot instances
 - Volume discounts
 - Regional variations
-
-## License
-
-This project is available for use under the MIT license.
