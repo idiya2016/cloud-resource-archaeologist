@@ -1,0 +1,7 @@
+# Caddyfile for serving Cloud Archaeologist reports
+
+:80 {
+    root * /usr/share/caddy/reports
+    file_server hide Caddyfile
+    encode gzip
+}

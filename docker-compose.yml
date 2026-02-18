@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  cloud-archaeologist:
+    build: .
+    container_name: cloud-archaeologist
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:-us-east-1}
+      - PYTHONPATH=/app
+    volumes:
+      - .:/app
+      - ./reports:/app/reports
+      - ~/.aws:/home/appuser/.aws:ro  # Mount AWS credentials, read-only
+    ports:
+      - "8000:8000"  # For potential future web interface
+    command: ["python", "cloud_archaeologist.py"]
+    networks:
+      - cloud-archaeologist-net
+    restart: unless-stopped
+
+  # Optional: Add a simple web server to serve reports
+  report-server:
+    image: caddy:2-alpine
+    container_name: report-server
+    depends_on:
+      - cloud-archaeologist
+    volumes:
+      - ./reports:/usr/share/caddy/reports
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    ports:
+      - "8080:80"
+    networks:
+      - cloud-archaeologist-net
+    restart: unless-stopped
+
+networks:
+  cloud-archaeologist-net:
+    driver: bridge
+
+volumes:
+  reports:
+    driver: local
