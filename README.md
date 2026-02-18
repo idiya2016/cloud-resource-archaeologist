@@ -1,5 +1,8 @@
 # Cloud Resource Archaeologist
 
+Originally developed: Fall 2025 (University coursework)  
+Uploaded to GitHub: Feb 2026 for portfolio archival
+
 A comprehensive AWS resource discovery and cost analysis tool that scans for EC2, EBS, S3, EIP, and snapshots with detailed cost calculations and professional reporting.
 
 ## Features
